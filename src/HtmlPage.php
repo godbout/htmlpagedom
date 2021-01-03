@@ -48,7 +48,7 @@ class HtmlPage
         }
         $current = libxml_use_internal_errors(true);
 
-        if (\LIBXML_VERSION < 20900) {
+        if (\PHP_VERSION_ID < 80000) {
             $disableEntities = libxml_disable_entity_loader(true);
         }
 
@@ -64,7 +64,7 @@ class HtmlPage
 
         libxml_use_internal_errors($current);
 
-        if (\LIBXML_VERSION < 20900) {
+        if (\PHP_VERSION_ID < 80000) {
             libxml_disable_entity_loader($disableEntities);
         }
 
