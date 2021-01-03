@@ -14,7 +14,7 @@ class HtmlPageCrawlerTest extends TestCase
      */
     public function testHtmlPageCrawler()
     {
-        $c = new HtmlPageCrawler;
+        $c = new HtmlPageCrawler();
         $c->addHtmlContent('<!doctype html><html><body><div id="content"><h1>Title</h1></div></body></html>');
         $title = $c->filter('#content > h1');
 
@@ -42,7 +42,7 @@ class HtmlPageCrawlerTest extends TestCase
      */
     public function testManipulationFunctions()
     {
-        $c = new HtmlPageCrawler;
+        $c = new HtmlPageCrawler();
         $c->addHtmlContent('<!doctype html><html><body><div id="content"><h1>Title</h1></div></body></html>');
 
         $content = $c->filter('#content');

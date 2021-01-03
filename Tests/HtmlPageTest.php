@@ -15,7 +15,7 @@ class HtmlPageTest extends TestCase
 
     public function testHtmlPage()
     {
-        $hp = new HtmlPage;
+        $hp = new HtmlPage();
         $this->assertEquals("<!DOCTYPE html>\n<html><head><title></title></head><body></body></html>\n", $hp->__toString());
 
         $title = 'Erste Testseite';
@@ -52,7 +52,7 @@ class HtmlPageTest extends TestCase
 
     public function testClone()
     {
-        $hp = new HtmlPage;
+        $hp = new HtmlPage();
         $this->assertEquals("<!DOCTYPE html>\n<html><head><title></title></head><body></body></html>\n", $hp->__toString());
 
         $title = 'Erste Testseite';
