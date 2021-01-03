@@ -442,14 +442,15 @@ class HtmlPageCrawlerTest extends TestCase
         $this->assertEquals('<div id="content"><div>Before</div><p>Absatz 1</p><div>After</div></div>', $c->saveHTML());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage DOMElement does not have a parent DOMElement node.
-     */
     public function testUnwrapInnerOnDOMElementExeption()
     {
         $c = HtmlPageCrawler::create('<div id="content"></div>');
         $p = $c->filter('div#content');
+
+
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('DOMElement does not have a parent DOMElement node.');
+
         $p->unwrapInner();
         $p->unwrapInner();
     }
@@ -566,11 +567,10 @@ END;
 
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testAttrOnInvalidNodeList()
     {
+        $this->expectException('InvalidArgumentException');
+
         $c = HtmlPageCrawler::create(null);
         $c->attr('data-foo');
     }
