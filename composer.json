@@ -31,6 +31,10 @@
             "Wa72\\HtmlPageDom\\":"src/"
         }
     },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.0-dev"
