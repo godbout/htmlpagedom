@@ -76,7 +76,11 @@ class Helpers {
     {
         $html = '<html><body>' . $html . '</body></html>';
         $current = libxml_use_internal_errors(true);
-        $disableEntities = libxml_disable_entity_loader(true);
+
+        if (\LIBXML_VERSION < 20900) {
+            $disableEntities = libxml_disable_entity_loader(true);
+        }
+
         $d = new \DOMDocument('1.0', $charset);
         $d->validateOnParse = true;
         if (function_exists('mb_convert_encoding') && in_array(
@@ -88,7 +92,11 @@ class Helpers {
         }
         @$d->loadHTML($html);
         libxml_use_internal_errors($current);
-        libxml_disable_entity_loader($disableEntities);
+
+        if (\LIBXML_VERSION < 20900) {
+            libxml_disable_entity_loader($disableEntities);
+        }
+
         return $d->getElementsByTagName('body')->item(0);
     }
 }
