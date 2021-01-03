@@ -150,7 +150,7 @@ alert('Hello world');
 </head>
 <body>
     <h1>TEST</h1>
-    <p class="">
+    <p class="something">
     asdf jksdlf ajsfk
     <b>jasdf
     jaksfd asdf</b>
@@ -174,7 +174,7 @@ alert('Hello world');
 	</head>
 	<body>
 		<h1>TEST</h1>
-		<p class="">asdf jksdlf ajsfk <b>jasdf jaksfd asdf</b> <a>jasdf jaks</a></p>
+		<p class="something">asdf jksdlf ajsfk <b>jasdf jaksfd asdf</b> <a>jasdf jaks</a></p>
 	</body>
 </html>
 
