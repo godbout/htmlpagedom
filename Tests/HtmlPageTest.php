@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class HtmlPageTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->root = vfsStream::setup('root');
     }
