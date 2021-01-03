@@ -12,6 +12,7 @@ also, the current repo you're looking at says:
 * bye bye Travis hello GitHub Actions
 * hello PHP8.0
 * bye bye PHP7.2 and 7.3
+* hello StyleCI and PSR12 and php-cs-fixer and php-codesniffer
 
 ## CURRENT STATUS
 
