@@ -1,4 +1,5 @@
 <?php
+
 namespace Wa72\HtmlPageDom;
 
 use Symfony\Component\DomCrawler\Crawler;
@@ -32,9 +33,9 @@ class HtmlPageCrawler extends Crawler
     {
         if ($content instanceof HtmlPageCrawler) {
             return $content;
-        } else {
-            return new HtmlPageCrawler($content);
         }
+
+        return new HtmlPageCrawler($content);
     }
 
     /**
@@ -63,6 +64,7 @@ class HtmlPageCrawler extends Crawler
                 }
             }
         }
+
         return $this;
     }
 
@@ -76,7 +78,7 @@ class HtmlPageCrawler extends Crawler
     public function after($content)
     {
         $content = self::create($content);
-        $newnodes = array();
+        $newnodes = [];
         foreach ($this as $i => $node) {
             /** @var \DOMNode $node */
             $refnode = $node->nextSibling;
@@ -93,6 +95,7 @@ class HtmlPageCrawler extends Crawler
         }
         $content->clear();
         $content->add($newnodes);
+
         return $this;
     }
 
@@ -106,7 +109,7 @@ class HtmlPageCrawler extends Crawler
     public function append($content)
     {
         $content = self::create($content);
-        $newnodes = array();
+        $newnodes = [];
         foreach ($this as $i => $node) {
             /** @var \DOMNode $node */
             foreach ($content as $newnode) {
@@ -118,6 +121,7 @@ class HtmlPageCrawler extends Crawler
         }
         $content->clear();
         $content->add($newnodes);
+
         return $this;
     }
 
@@ -131,7 +135,7 @@ class HtmlPageCrawler extends Crawler
     public function appendTo($element)
     {
         $e = self::create($element);
-        $newnodes = array();
+        $newnodes = [];
         foreach ($e as $i => $node) {
             /** @var \DOMNode $node */
             foreach ($this as $newnode) {
@@ -143,6 +147,7 @@ class HtmlPageCrawler extends Crawler
                 $newnodes[] = $newnode;
             }
         }
+
         return self::create($newnodes);
     }
 
@@ -162,6 +167,7 @@ class HtmlPageCrawler extends Crawler
                 $node->setAttribute($name, $value);
             }
         }
+
         return $this;
     }
 
@@ -170,8 +176,8 @@ class HtmlPageCrawler extends Crawler
      * This is just an alias for attr() for naming consistency with setAttribute()
      *
      * @param string $name The attribute name
-     * @return string|null The attribute value or null if the attribute does not exist
      * @throws \InvalidArgumentException When current node is empty
+     * @return string|null The attribute value or null if the attribute does not exist
      */
     public function getAttribute($name)
     {
@@ -188,7 +194,7 @@ class HtmlPageCrawler extends Crawler
     public function before($content)
     {
         $content = self::create($content);
-        $newnodes = array();
+        $newnodes = [];
         foreach ($this as $i => $node) {
             /** @var \DOMNode $node */
             foreach ($content as $newnode) {
@@ -202,6 +208,7 @@ class HtmlPageCrawler extends Crawler
         }
         $content->clear();
         $content->add($newnodes);
+
         return $this;
     }
 
@@ -220,7 +227,7 @@ class HtmlPageCrawler extends Crawler
 
     public function __clone()
     {
-        $newnodes = array();
+        $newnodes = [];
         foreach ($this as $node) {
             /** @var \DOMNode $node */
             $newnodes[] = $node->cloneNode(true);
@@ -246,9 +253,9 @@ class HtmlPageCrawler extends Crawler
     {
         if (null === $value) {
             return $this->getStyle($key);
-        } else {
-            return $this->setStyle($key, $value);
         }
+
+        return $this->setStyle($key, $value);
     }
 
     /**
@@ -260,6 +267,7 @@ class HtmlPageCrawler extends Crawler
     public function getStyle($key)
     {
         $styles = Helpers::cssStringToArray($this->getAttribute('style'));
+
         return (isset($styles[$key]) ? $styles[$key] : null);
     }
 
@@ -284,6 +292,7 @@ class HtmlPageCrawler extends Crawler
                 $node->setAttribute('style', Helpers::cssArrayToString($styles));
             }
         }
+
         return $this;
     }
 
@@ -299,6 +308,7 @@ class HtmlPageCrawler extends Crawler
         foreach ($this as $node) {
             $node->nodeValue = '';
         }
+
         return $this;
     }
 
@@ -319,6 +329,7 @@ class HtmlPageCrawler extends Crawler
                 }
             }
         }
+
         return false;
     }
 
@@ -341,6 +352,7 @@ class HtmlPageCrawler extends Crawler
                 $node->appendChild($newnode);
             }
         }
+
         return $this;
     }
 
@@ -365,7 +377,7 @@ class HtmlPageCrawler extends Crawler
     public function insertAfter($element)
     {
         $e = self::create($element);
-        $newnodes = array();
+        $newnodes = [];
         foreach ($e as $i => $node) {
             /** @var \DOMNode $node */
             $refnode = $node->nextSibling;
@@ -380,6 +392,7 @@ class HtmlPageCrawler extends Crawler
                 $newnodes[] = $newnode;
             }
         }
+
         return self::create($newnodes);
     }
 
@@ -393,7 +406,7 @@ class HtmlPageCrawler extends Crawler
     public function insertBefore($element)
     {
         $e = self::create($element);
-        $newnodes = array();
+        $newnodes = [];
         foreach ($e as $i => $node) {
             /** @var \DOMNode $node */
             foreach ($this as $newnode) {
@@ -405,6 +418,7 @@ class HtmlPageCrawler extends Crawler
                 $newnodes[] = $newnode;
             }
         }
+
         return self::create($newnodes);
     }
 
@@ -418,7 +432,7 @@ class HtmlPageCrawler extends Crawler
     public function prepend($content)
     {
         $content = self::create($content);
-        $newnodes = array();
+        $newnodes = [];
         foreach ($this as $i => $node) {
             $refnode = $node->firstChild;
             /** @var \DOMNode $node */
@@ -427,7 +441,7 @@ class HtmlPageCrawler extends Crawler
                 $newnode = static::importNewnode($newnode, $node, $i);
                 if ($refnode === null) {
                     $node->appendChild($newnode);
-                } else if ($refnode !== $newnode) {
+                } elseif ($refnode !== $newnode) {
                     $node->insertBefore($newnode, $refnode);
                 }
                 $newnodes[] = $newnode;
@@ -435,6 +449,7 @@ class HtmlPageCrawler extends Crawler
         }
         $content->clear();
         $content->add($newnodes);
+
         return $this;
     }
 
@@ -448,7 +463,7 @@ class HtmlPageCrawler extends Crawler
     public function prependTo($element)
     {
         $e = self::create($element);
-        $newnodes = array();
+        $newnodes = [];
         foreach ($e as $i => $node) {
             $refnode = $node->firstChild;
             /** @var \DOMNode $node */
@@ -465,6 +480,7 @@ class HtmlPageCrawler extends Crawler
                 $newnodes[] = $newnode;
             }
         }
+
         return self::create($newnodes);
     }
 
@@ -519,6 +535,7 @@ class HtmlPageCrawler extends Crawler
                 }
             }
         }
+
         return $this;
     }
 
@@ -544,6 +561,7 @@ class HtmlPageCrawler extends Crawler
                 $node->setAttribute('class', trim(join(' ', $classes)));
             }
         }
+
         return $this;
     }
 
@@ -557,11 +575,11 @@ class HtmlPageCrawler extends Crawler
     public function replaceAll($element)
     {
         $e = self::create($element);
-        $newnodes = array();
+        $newnodes = [];
         foreach ($e as $i => $node) {
             /** @var \DOMNode $node */
             $parent = $node->parentNode;
-            $refnode  = $node->nextSibling;
+            $refnode = $node->nextSibling;
             foreach ($this as $j => $newnode) {
                 /** @var \DOMNode $newnode */
                 $newnode = static::importNewnode($newnode, $node, $i);
@@ -573,6 +591,7 @@ class HtmlPageCrawler extends Crawler
                 $newnodes[] = $newnode;
             }
         }
+
         return self::create($newnodes);
     }
 
@@ -586,11 +605,11 @@ class HtmlPageCrawler extends Crawler
     public function replaceWith($content)
     {
         $content = self::create($content);
-        $newnodes = array();
+        $newnodes = [];
         foreach ($this as $i => $node) {
             /** @var \DOMNode $node */
             $parent = $node->parentNode;
-            $refnode  = $node->nextSibling;
+            $refnode = $node->nextSibling;
             foreach ($content as $j => $newnode) {
                 /** @var \DOMNode $newnode */
                 $newnode = static::importNewnode($newnode, $node, $i);
@@ -604,6 +623,7 @@ class HtmlPageCrawler extends Crawler
         }
         $content->clear();
         $content->add($newnodes);
+
         return $this;
     }
 
@@ -622,6 +642,7 @@ class HtmlPageCrawler extends Crawler
             /** @var \DOMNode $node */
             $text .= $node->nodeValue;
         }
+
         return $text;
     }
 
@@ -639,6 +660,7 @@ class HtmlPageCrawler extends Crawler
             /** @var \DOMNode $node */
             $node->nodeValue = $text;
         }
+
         return $this;
     }
 
@@ -663,6 +685,7 @@ class HtmlPageCrawler extends Crawler
                 }
             }
         }
+
         return $this;
     }
 
@@ -674,12 +697,13 @@ class HtmlPageCrawler extends Crawler
      */
     public function unwrap()
     {
-        $parents = array();
-        foreach($this as $i => $node) {
+        $parents = [];
+        foreach ($this as $i => $node) {
             $parents[] = $node->parentNode;
         }
 
         self::create($parents)->unwrapInner();
+
         return $this;
     }
 
@@ -691,7 +715,7 @@ class HtmlPageCrawler extends Crawler
      */
     public function unwrapInner()
     {
-        foreach($this as $i => $node) {
+        foreach ($this as $i => $node) {
             if (!$node->parentNode instanceof \DOMElement) {
                 throw new \InvalidArgumentException('DOMElement does not have a parent DOMElement node.');
             }
@@ -721,7 +745,7 @@ class HtmlPageCrawler extends Crawler
     public function wrap($wrappingElement)
     {
         $content = self::create($wrappingElement);
-        $newnodes = array();
+        $newnodes = [];
         foreach ($this as $i => $node) {
             /** @var \DOMNode $node */
             $newnode = $content->getNode(0);
@@ -741,6 +765,7 @@ class HtmlPageCrawler extends Crawler
                     if ($child instanceof \DOMElement) {
                         $newnode = $child;
                         $elementFound = true;
+
                         break;
                     }
                 }
@@ -753,6 +778,7 @@ class HtmlPageCrawler extends Crawler
         }
         $content->clear();
         $content->add($newnodes);
+
         return $this;
     }
 
@@ -779,7 +805,7 @@ class HtmlPageCrawler extends Crawler
         /** @var \DOMNode $newnode */
         $newnode = static::importNewnode($newnode, $parent);
 
-        $newnode = $parent->insertBefore($newnode,$this->getNode(0));
+        $newnode = $parent->insertBefore($newnode, $this->getNode(0));
         $content->clear();
         $content->add($newnode);
 
@@ -789,6 +815,7 @@ class HtmlPageCrawler extends Crawler
                 if ($child instanceof \DOMElement) {
                     $newnode = $child;
                     $elementFound = true;
+
                     break;
                 }
             }
@@ -800,6 +827,7 @@ class HtmlPageCrawler extends Crawler
             /** @var \DOMNode $node */
             $newnode->appendChild($node);
         }
+
         return $this;
     }
 
@@ -816,6 +844,7 @@ class HtmlPageCrawler extends Crawler
             /** @var \DOMNode $node */
             self::create($node->childNodes)->wrapAll($content);
         }
+
         return $this;
     }
 
@@ -832,15 +861,15 @@ class HtmlPageCrawler extends Crawler
     {
         if ($this->isHtmlDocument()) {
             return $this->getDOMDocument()->saveHTML();
-        } else {
-            $doc = new \DOMDocument('1.0', 'UTF-8');
-            $root = $doc->appendChild($doc->createElement('_root'));
-            foreach ($this as $node) {
-                $root->appendChild($doc->importNode($node, true));
-            }
-            $html = trim($doc->saveHTML());
-            return preg_replace('@^<'.self::FRAGMENT_ROOT_TAGNAME.'[^>]*>|</'.self::FRAGMENT_ROOT_TAGNAME.'>$@', '', $html);
         }
+        $doc = new \DOMDocument('1.0', 'UTF-8');
+        $root = $doc->appendChild($doc->createElement('_root'));
+        foreach ($this as $node) {
+            $root->appendChild($doc->importNode($node, true));
+        }
+        $html = trim($doc->saveHTML());
+
+        return preg_replace('@^<' . self::FRAGMENT_ROOT_TAGNAME . '[^>]*>|</' . self::FRAGMENT_ROOT_TAGNAME . '>$@', '', $html);
     }
 
     public function __toString()
@@ -863,9 +892,9 @@ class HtmlPageCrawler extends Crawler
             && $node->nodeName == 'html'
         ) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     /**
@@ -882,6 +911,7 @@ class HtmlPageCrawler extends Crawler
         ) {
             $r = $node->ownerDocument;
         }
+
         return $r;
     }
 
@@ -977,7 +1007,8 @@ class HtmlPageCrawler extends Crawler
      * @param int $clone
      * @return \DOMNode
      */
-    protected static function importNewnode(\DOMNode $newnode, \DOMNode $referencenode, $clone = 0) {
+    protected static function importNewnode(\DOMNode $newnode, \DOMNode $referencenode, $clone = 0)
+    {
         if ($newnode->ownerDocument !== $referencenode->ownerDocument) {
             $referencenode->ownerDocument->preserveWhiteSpace = false;
             $newnode = $referencenode->ownerDocument->importNode($newnode, true);
@@ -986,6 +1017,7 @@ class HtmlPageCrawler extends Crawler
                 $newnode = $newnode->cloneNode(true);
             }
         }
+
         return $newnode;
     }
 
@@ -1007,6 +1039,7 @@ class HtmlPageCrawler extends Crawler
             case 'length':
                 return count($this);
         }
+
         throw new \Exception('No such property ' . $name);
     }
 }

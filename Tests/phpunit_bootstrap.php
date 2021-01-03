@@ -1,4 +1,5 @@
 <?php
+
 // if we are checked out as a stand-alone project
 $loader = __DIR__ . '/../vendor/autoload.php';
  

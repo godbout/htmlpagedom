@@ -1,4 +1,5 @@
 <?php
+
 namespace Wa72\HtmlPageDom;
 
 use Symfony\Component\CssSelector\CssSelector;
@@ -116,9 +117,9 @@ class HtmlPage
         $t = $this->dom->getElementsByTagName('title')->item(0);
         if ($t == null) {
             return null;
-        } else {
-            return $t->nodeValue;
         }
+
+        return $t->nodeValue;
     }
 
     /**
@@ -163,9 +164,9 @@ class HtmlPage
         $node = $this->filterXPath('descendant-or-self::meta[@name = \'' . $name . '\']')->getNode(0);
         if ($node instanceof \DOMElement) {
             return $node->getAttribute('content');
-        } else {
-            return null;
         }
+
+        return null;
     }
 
     /**
@@ -193,9 +194,9 @@ class HtmlPage
         $node = $this->filterXPath('descendant-or-self::base')->getNode(0);
         if ($node instanceof \DOMElement) {
             return $node->getAttribute('href');
-        } else {
-            return null;
         }
+
+        return null;
     }
 
     /**
@@ -221,6 +222,7 @@ class HtmlPage
             $head = $this->dom->createElement('head');
             $head = $this->dom->documentElement->insertBefore($head, $this->getBodyNode());
         }
+
         return $head;
     }
 
@@ -236,6 +238,7 @@ class HtmlPage
             $body = $this->dom->createElement('body');
             $body = $this->dom->documentElement->appendChild($body);
         }
+
         return $body;
     }
 
@@ -274,10 +277,11 @@ class HtmlPage
     {
         if ($filename != '') {
             file_put_contents($filename, (string) $this);
+
             return;
-        } else {
-            return (string) $this;
         }
+
+        return (string) $this;
     }
 
     /**
@@ -337,16 +341,17 @@ class HtmlPage
      * minify the HTML document
      *
      * @param array $options Options passed to PrettyMin::__construct()
-     * @return HtmlPage
      * @throws \Exception
+     * @return HtmlPage
      */
-    public function minify(array $options = array())
+    public function minify(array $options = [])
     {
         if (!class_exists('Wa72\\HtmlPrettymin\\PrettyMin')) {
             throw new \Exception('Function minify needs composer package wa72/html-pretty-min');
         }
         $pm = new PrettyMin($options);
         $pm->load($this->dom)->minify();
+
         return $this;
     }
 
@@ -354,16 +359,17 @@ class HtmlPage
      * indent the HTML document
      *
      * @param array $options Options passed to PrettyMin::__construct()
-     * @return HtmlPage
      * @throws \Exception
+     * @return HtmlPage
      */
-    public function indent(array $options = array())
+    public function indent(array $options = [])
     {
         if (!class_exists('Wa72\\HtmlPrettymin\\PrettyMin')) {
             throw new \Exception('Function indent needs composer package wa72/html-pretty-min');
         }
         $pm = new PrettyMin($options);
         $pm->load($this->dom)->indent();
+
         return $this;
     }
 }

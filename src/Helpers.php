@@ -1,4 +1,5 @@
 <?php
+
 namespace Wa72\HtmlPageDom;
 
 /**
@@ -6,7 +7,8 @@ namespace Wa72\HtmlPageDom;
  *
  * @package Wa72\HtmlPageDom
  */
-class Helpers {
+class Helpers
+{
 
     /**
      * remove newlines from string and minimize whitespace (multiple whitespace characters replaced by one space)
@@ -20,6 +22,7 @@ class Helpers {
         $string = str_replace("\n", ' ', $string);
         $string = str_replace("\r", ' ', $string);
         $string = preg_replace('/\s+/', ' ', $string);
+
         return trim($string);
     }
 
@@ -32,7 +35,7 @@ class Helpers {
     public static function cssStringToArray($css)
     {
         $statements = explode(';', preg_replace('/\s+/s', ' ', $css));
-        $styles = array();
+        $styles = [];
         foreach ($statements as $statement) {
             $statement = trim($statement);
             if ('' === $statement) {
@@ -46,6 +49,7 @@ class Helpers {
             $value = trim(substr($statement, $p + 1));
             $styles[$key] = $value;
         }
+
         return $styles;
     }
 
@@ -61,6 +65,7 @@ class Helpers {
         foreach ($array as $key => $value) {
             $styles .= $key . ': ' . $value . ';';
         }
+
         return $styles;
     }
 
@@ -84,9 +89,9 @@ class Helpers {
         $d = new \DOMDocument('1.0', $charset);
         $d->validateOnParse = true;
         if (function_exists('mb_convert_encoding') && in_array(
-                strtolower($charset),
-                array_map('strtolower', mb_list_encodings())
-            )
+            strtolower($charset),
+            array_map('strtolower', mb_list_encodings())
+        )
         ) {
             $html = mb_convert_encoding($html, 'HTML-ENTITIES', $charset);
         }

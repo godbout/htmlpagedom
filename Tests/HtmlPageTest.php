@@ -1,9 +1,10 @@
 <?php
+
 namespace Wa72\HtmlPageDom\Tests;
 
-use Wa72\HtmlPageDom\HtmlPage;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use Wa72\HtmlPageDom\HtmlPage;
 
 class HtmlPageTest extends TestCase
 {
@@ -69,7 +70,7 @@ class HtmlPageTest extends TestCase
 
     public function testScript()
     {
-        $html =<<<END
+        $html = <<<END
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,7 +89,7 @@ END;
         $hp->getBody()->append('<h1>Script Test</h1>');
         $newhtml = $hp->save();
 
-        $expected =<<<END
+        $expected = <<<END
 <!DOCTYPE html>
 <html><head><title></title><script>
 // this will be awesome
@@ -102,7 +103,7 @@ END;
 
     public function testMinify()
     {
-        $html =<<<END
+        $html = <<<END
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,12 +133,11 @@ END;
 
 END;
         $this->assertEquals($expected, $hp->minify()->save());
-
     }
 
     public function testIndent()
     {
-        $html =<<<END
+        $html = <<<END
 <!DOCTYPE html>
 <html>
 <head>
@@ -179,7 +179,6 @@ alert('Hello world');
 
 END;
         $this->assertEquals($expected, $hp->indent()->save());
-
     }
 
     public function testGetCrawler()
@@ -314,7 +313,7 @@ END;
     {
         $hp = new HtmlPage('<!DOCTYPE html><html></html>');
         $this->assertInstanceOf('\DOMElement', $hp->getBodyNode());
-        $this->assertEquals('<body></body>', (string) $hp->getBody());    
+        $this->assertEquals('<body></body>', (string) $hp->getBody());
     }
 
     public function testTrimNewlines()

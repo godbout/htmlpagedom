@@ -1,8 +1,9 @@
 <?php
+
 namespace Wa72\HtmlPageDom\Tests;
 
-use Wa72\HtmlPageDom\HtmlPageCrawler;
 use PHPUnit\Framework\TestCase;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 class HtmlPageCrawlerTest extends TestCase
 {
@@ -525,9 +526,10 @@ END;
         $tbd = $c->filter('table > tbody > tr > td')
             ->reduce(
                 function ($c, $j) {
-                    if (($j+1) % 3 == 0) {
+                    if (($j + 1) % 3 == 0) {
                         return true;
                     }
+
                     return false;
                 }
             );
@@ -542,7 +544,7 @@ END;
         $text = file_get_contents(__DIR__ . '/utf8.html');
         $c = HtmlPageCrawler::create($text);
 
-        $expected =<<< END
+        $expected = <<< END
 <p style="margin: 0cm 0cm 0pt;"><span>Die Burse&nbsp;wurde unmittelbar (1478 bis 1482) nach der Universit&auml;tsgr&uuml;ndung als Studentenwohnhaus und -lehranstalt errichtet. Hier lehrte der Humanist und Reformator Philipp Melanchthon bis zu seiner Berufung nach Wittenberg 1518, an ihn erinnert eine Gedenktafel. 1803 bis 1805 wurde das Geb&auml;ude im Stil des Klassizismus zum ersten T&uuml;binger Klinikum umgebaut. Einer der ersten Patienten war Friedrich H&ouml;lderlin, der nach einer 231 Tage dauernden Behandlung am 3. Mai 1807 als unheilbar entlassen wurde.</span></p><p style="margin: 0cm 0cm 0pt;"><span>Einst Badeanstalt vor der Stadtmauer. Wer durch das kleine Stadttor geht, hat &ndash; r&uuml;ckw&auml;rts gewandt &ndash; einen guten Blick auf die Stadtbefestigung mit "Pechnasen" und Spuren des alten Wehrgangs.</span></p>
 END;
 
@@ -564,7 +566,6 @@ END;
         $this->assertEquals('bar', $c->getAttribute('data-foo'));
         $c->removeAttr('data-foo');
         $this->assertNull($c->attr('data-foo'));
-
     }
 
     public function testAttrOnInvalidNodeList()
@@ -636,7 +637,6 @@ END;
 
         $r4 = $c3->replaceAll($c2);
         $this->assertNotEquals(spl_object_hash($c2), spl_object_hash($r4));
-
     }
 
     public function testDisconnectedNodes()
@@ -703,6 +703,7 @@ END;
             $c->foo;
         } catch (\Exception $e) {
             $this->assertEquals('No such property foo', $e->getMessage());
+
             return;
         }
         $this->fail();

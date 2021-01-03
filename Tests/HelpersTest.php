@@ -1,9 +1,9 @@
 <?php
+
 namespace Wa72\HtmlPageDom\Tests;
 
-use Wa72\HtmlPageDom\Helpers;
-use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use Wa72\HtmlPageDom\Helpers;
 
 class HelpersTest extends TestCase
 {
