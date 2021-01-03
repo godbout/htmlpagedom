@@ -90,21 +90,14 @@ END;
 
         $expected =<<<END
 <!DOCTYPE html>
-<html>
-<head>
-<title></title>
-<script>
+<html><head><title></title><script>
 // this will be awesome
 alert('Hello world');
-</script>
-</head>
-<body>
-<h1>Script Test</h1></body>
-</html>
+</script></head><body>
+<h1>Script Test</h1></body></html>
 
 END;
-        $this->assertEquals($expected, $newhtml);
-
+        $this->assertXmlStringEqualsXmlString($expected, $newhtml);
     }
 
     public function testMinify()
