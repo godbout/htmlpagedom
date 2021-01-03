@@ -18,7 +18,7 @@
         "symfony/css-selector":"^3.4|^4|^5"
     },
     "require-dev": {
-        "mikey179/vfsstream": "^1.6",
+        "mikey179/vfsstream": "dev-master",
         "phpunit/phpunit": "^9",
         "scrutinizer/ocular": "^1.8",
         "wa72/html-pretty-min": "~0.1"
