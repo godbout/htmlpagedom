@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "mikey179/vfsstream": "dev-master",
-        "phpunit/phpunit": "^9",
+        "phpunit/phpunit": "^9.5",
         "scrutinizer/ocular": "^1.8",
         "wa72/html-pretty-min": "~0.1"
     },
