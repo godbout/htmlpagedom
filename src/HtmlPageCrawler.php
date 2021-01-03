@@ -18,7 +18,7 @@ class HtmlPageCrawler extends Crawler
     /**
      * the (internal) root element name used when importing html fragments
      * */
-    const FRAGMENT_ROOT_TAGNAME = '_root';
+    public const FRAGMENT_ROOT_TAGNAME = '_root';
 
     /**
      * Get an HtmlPageCrawler object from a HTML string, DOMNode, DOMNodeList or HtmlPageCrawler

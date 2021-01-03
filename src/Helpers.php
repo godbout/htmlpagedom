@@ -9,7 +9,6 @@ namespace Wa72\HtmlPageDom;
  */
 class Helpers
 {
-
     /**
      * remove newlines from string and minimize whitespace (multiple whitespace characters replaced by one space)
      * useful for cleaning up text retrieved by HtmlPageCrawler::text() (nodeValue of a DOMNode)
