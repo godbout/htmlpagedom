@@ -9,7 +9,6 @@ class HtmlPageCrawlerTest extends TestCase
     /**
      * @covers Wa72\HtmlPageDom\HtmlPageCrawler::__construct
      * @covers Wa72\HtmlPageDom\HtmlPageCrawler::filter
-     * @covers Wa72\HtmlPageDom\HtmlPageCrawler::getFirstNode
      * @covers Wa72\HtmlPageDom\HtmlPageCrawler::nodeName
      */
     public function testHtmlPageCrawler()
