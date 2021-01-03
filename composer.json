@@ -14,8 +14,8 @@
     ],
     "require":{
         "php":"^7.4 || ^8.0",
-        "symfony/dom-crawler":"^5",
-        "symfony/css-selector":"^5"
+        "symfony/dom-crawler":"^5.2",
+        "symfony/css-selector":"^5.2"
     },
     "require-dev": {
         "mikey179/vfsstream": "dev-master",
