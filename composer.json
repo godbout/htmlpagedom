@@ -1,15 +1,15 @@
 {
-    "name":"wa72/htmlpagedom",
+    "name":"godbout/htmlpagedom",
     "description":"jQuery-inspired DOM manipulation extension for Symfony's Crawler",
     "keywords":["HTML", "DOM", "Crawler"],
-    "homepage":"http://github.com/wasinger/htmlpagedom",
+    "homepage":"http://github.com/godbout/htmlpagedom",
     "type":"library",
     "license":"MIT",
     "authors":[
         {
-            "name":"Christoph Singer",
-            "email":"singer@webagentur72.de",
-            "homepage":"http://www.webagentur72.de"
+            "name":"Guillaume Leclerc",
+            "email":"guill@sleeplessmind.com.mo",
+            "homepage":"https://sleeplessmind.com.mo"
         }
     ],
     "require":{
