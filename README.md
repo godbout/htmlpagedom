@@ -22,7 +22,7 @@ https://github.com/wasinger/htmlpagedom/issues/35
 
 https://github.com/godbout/dash-docset-builder/issues/9
 
-unfortunately you can't seem to be able to use your own [Repository](https://github.com/godbout/dash-docset-builder/issues/9) if you don't use a root `composer.json.` the [dash-docset-builder](https://github.com/godbout/dash-docset-builder) tool doesn't require you to create any file, you just require from composer. to be able to do that, i had to get `htmlpagedom` support PHP8.0. hence the fork. hence the push. if you have a better way, let me know.
+unfortunately you can't seem to be able to use your own [Repository](https://github.com/godbout/dash-docset-builder/issues/9) if you don't use a root `composer.json.` the [dash-docset-builder](https://github.com/godbout/dash-docset-builder) tool doesn't require you to create any file, you just require from composer and BOOM it works. to be able to do that, i had to get `htmlpagedom` support PHP8.0. hence the fork. hence the push. if you have a better way, let me know.
 
 
 ## CURRENT STATUS
